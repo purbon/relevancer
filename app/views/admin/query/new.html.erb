@@ -1,0 +1,11 @@
+<b> Save a new Query </b>
+
+<p>
+<%= form_for @query, url: { action: "create" } do |f| %>
+  <label> Name:</label>
+  <%= f.text_field :name %><br/>
+  <label> QueryString:</label><br/>
+  <%= f.text_area :json, size: "90x36" %> <br/>
+  <%= f.submit "Save" %>
+<% end %>
+</p>

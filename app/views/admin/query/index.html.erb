@@ -1,0 +1,20 @@
+<h3> Available Queries </h3>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th> 
+    <th>Query</th>
+    <th>CreatedAt</th>
+    
+  </tr>
+
+<% @queries.each do |query| %>
+  <tr>
+    <td><%= query.id %></td>
+    <td><%= query.name %></td> 
+    <td><%= query.json %></td>
+    <td><%= query.created_at %></td>
+  </tr>
+<% end %>
+</table>
