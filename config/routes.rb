@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
   get 'relevancer/index'
+  post 'relevancer/report'
+  get 'search',  to: 'relevancer#search'
 
   namespace :admin do
     root to: "admin#index"

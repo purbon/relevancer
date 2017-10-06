@@ -9,6 +9,11 @@ class Admin::QueryController < ApplicationController
     @query = Query.new
   end
 
+
+  def edit
+
+  end
+
   def create
     @query = Query.new(query_params)
 

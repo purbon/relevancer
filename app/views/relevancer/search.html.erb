@@ -1,0 +1,38 @@
+<h1>Relevancer</h1>
+
+
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:q, "Queries for:") %>
+  <%= text_field_tag(:q) %>
+  <%= collection_select(:query, :id, @queries, :id, :name, {:prompt => true}) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<%= form_tag("/relevancer/report", method: "post") do %>
+   <%= hidden_field_tag "queryID", @queryId %>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Text</th>
+      <th>Timestamp</th>
+      <th>Relevance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @response["hits"]["hits"].each_with_index do |hit, index| %>
+      </tr>
+      <%= hidden_field_tag "id_for_#{index}", hit["_id"] %>
+      <td> <%= hit["_source"]["title"] %> </td>
+        <td> <%= hit["_source"]["text"][0,500] %> </td>
+        <td> <%= hit["_source"]["timestamp"] %> </td>
+        <td>
+          <%= select_tag("relevancy_for_#{index}", options_for_select([['Relevant', 2], ['Neutral', 1], ['Not Relevant', 0]], 1)) %>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+  <%= submit_tag("Save") %>
+<% end %>

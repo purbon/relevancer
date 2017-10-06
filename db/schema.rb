@@ -10,11 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170912124333) do
+ActiveRecord::Schema.define(version: 20171004170302) do
 
   create_table "queries", force: :cascade do |t|
     t.text     "json"
     t.string   "name"
+    t.string   "index"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reportlines", force: :cascade do |t|
+    t.string   "docID"
+    t.integer  "relevancy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reportlines_reports", id: false, force: :cascade do |t|
+    t.integer "report_id"
+    t.integer "reportline_id"
+    t.index ["report_id"], name: "index_reportlines_reports_on_report_id"
+    t.index ["reportline_id"], name: "index_reportlines_reports_on_reportline_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "queryId"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

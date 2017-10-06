@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  queryId: 1
+  lines: one
+
+two:
+  queryId: 1
+  lines: two
