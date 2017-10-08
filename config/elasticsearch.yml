@@ -1,0 +1,6 @@
+production:
+  environment: production
+  elasticsearch_url: "http://localhost:9200"
+development:
+  environment: sandbox
+  elasticsearch_url: "http://localhost:9200"

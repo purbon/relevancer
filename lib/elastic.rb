@@ -3,11 +3,13 @@ require 'elasticsearch'
 
 class ElasticClient
 
+  attr_reader :client, :config
+
   include Singleton
 
-  attr_reader :client
-
   def initialize
-    @client = Elasticsearch::Client.new log: false
+    config = {}
+    config[:url] = Settings.elasticsearch.url
+    @client = Elasticsearch::Client.new url: config[:url], log: false
   end
 end

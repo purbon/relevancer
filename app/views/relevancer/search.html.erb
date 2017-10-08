@@ -1,17 +1,19 @@
 <h1>Relevancer</h1>
 
 
-<%= form_tag("/search", method: "get") do %>
+<%= form_tag("/search", method: "get", id: "search") do %>
   <%= label_tag(:q, "Queries for:") %>
   <%= text_field_tag(:q) %>
-  <%= collection_select(:query, :id, @queries, :id, :name, {:prompt => true}) %>
+  <%= collection_select(:query, :id, @queries, :id, :name, {:prompt => true, :selected => @queryId}) %>
   <%= submit_tag("Search") %>
 <% end %>
 
-<%= form_tag("/relevancer/report", method: "post") do %>
-   <%= hidden_field_tag "queryID", @queryId %>
-<table>
-  <thead>
+<%= form_tag("/relevancer/report", method: "post", id: "report") do %>
+  <%= hidden_field_tag "queryID", @queryId %>
+  <%= hidden_field_tag "queryParam", @query_param %>
+
+  <table>
+    <thead>
     <tr>
       <th>Title</th>
       <th>Text</th>
@@ -27,7 +29,7 @@
         <td> <%= hit["_source"]["text"][0,500] %> </td>
         <td> <%= hit["_source"]["timestamp"] %> </td>
         <td>
-          <%= select_tag("relevancy_for_#{index}", options_for_select([['Relevant', 2], ['Neutral', 1], ['Not Relevant', 0]], 1)) %>
+          <%= select_tag("relevancy_for_#{index}", options_for_select( @options, -1), required: true) %>
         </td>
       </tr>
     <% end %>

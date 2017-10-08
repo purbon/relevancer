@@ -6,7 +6,8 @@
     <th>Name</th> 
     <th>Query</th>
     <th>CreatedAt</th>
-    
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
 
 <% @queries.each do |query| %>
@@ -15,6 +16,13 @@
     <td><%= query.name %></td> 
     <td><%= query.json %></td>
     <td><%= query.created_at %></td>
+    <td>
+      <%= button_to "Edit", { action: "edit", id: query.id }, method: "get" %>
+    </td>
+    <td> 
+    <%= button_to('Delete', { action: "destroy", id: query.id },
+          method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }) %>
+    </td>
   </tr>
 <% end %>
 </table>

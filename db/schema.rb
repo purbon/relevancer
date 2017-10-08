@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20171004170302) do
 
   create_table "reports", force: :cascade do |t|
     t.integer  "queryId"
+    t.string   "queryParam"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

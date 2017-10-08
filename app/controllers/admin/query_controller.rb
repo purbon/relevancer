@@ -10,8 +10,12 @@ class Admin::QueryController < ApplicationController
   end
 
 
-  def edit
+  def show
+    @query = Query.find(params[:id])
+  end
 
+  def edit
+    @query = Query.find(params[:id])
   end
 
   def create
@@ -25,8 +29,24 @@ class Admin::QueryController < ApplicationController
 
   end
 
+  def update
+    @query = Query.find(params[:id])
+    if @query.update_attributes(query_params)
+      flash[:success] = "Query updated"
+      redirect_to :action => "index"
+    else
+      render :action => "edit"
+    end
+
+  end
+
+  def destroy
+    query = Query.find(params[:id])
+    query.destroy
+  end
+
   def query_params
-    params.require(:query).permit(:json, :name)
+    params.require(:query).permit(:json, :name, :index)
   end
 
 end

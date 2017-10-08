@@ -1,2 +1,13 @@
-<h1>Query#create</h1>
-<p>Find me in app/views/query/create.html.erb</p>
+<b> Update a Query </b>
+
+<p>
+<%= form_for @query, url: { action: "update" }, :method => "put" do |f| %>
+  <label> Name:</label>
+  <%= f.text_field :name %><br/>
+  <label> Index:</label>  
+  <%= f.text_field :index %><br/>
+  <label> QueryString:</label><br/>
+  <%= f.text_area :json, size: "90x36" %> <br/>
+  <%= f.submit "Update" %>
+<% end %>
+</p>
