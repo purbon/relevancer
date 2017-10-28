@@ -22,20 +22,24 @@ class RelevancerController < ApplicationController
 
   def report
     pairs = params.keys[4..-4].each_slice(2)
-    report = Report.new(queryId: params["queryID"], queryParam: params["queryParam"])
-    pairs.each do |pair|
-      report.reportlines << Reportline.new(docID: params[pair[0]], relevancy: params[pair[1]])
-    end
+    docs = build_docs_list(pairs, params)
+    report = Report.build(docs, params["queryID"], params["queryParam"])
     report.save
     redirect_to :search
   end
 
   private
 
-   def query_render(query_obj, params)
+  def build_docs_list(pairs, params)
+    pairs.map do |pair|
+      {docID: params[pair[0]], rel: params[pair[1]].to_f}
+    end
+  end
+
+  def query_render(query_obj, params)
     query_param = params["q"]
     renderer = ERB.new(query_obj.json)
     generated_query = renderer.result(binding)
-    { query:  generated_query, index: query_obj.index, param: query_param}
-   end
+    { query:  generated_query, index: query_obj.index, param: query_param }
+  end
 end

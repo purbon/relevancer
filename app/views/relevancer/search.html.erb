@@ -8,7 +8,7 @@
   <%= submit_tag("Search") %>
 <% end %>
 
-<%= form_tag("/relevancer/report", method: "post", id: "report") do %>
+<%= form_tag("/relevancer/report", method: "post", id: "report", :onSubmit => "return validateReport()") do %>
   <%= hidden_field_tag "queryID", @queryId %>
   <%= hidden_field_tag "queryParam", @query_param %>
 
