@@ -1,0 +1,25 @@
+<h1>Reports</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Query Id</th>
+      <th>Query Terms</th>
+      <th>CDG</th>
+      <th>ICDG</th>
+      <th>NCDG</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.queryId %> </td>
+        <td><%= report.queryParam %> </td>
+        <td><%= report.dcg %> </td>
+        <td><%= report.idcg %> </td>
+        <td><%= report.ndcg %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

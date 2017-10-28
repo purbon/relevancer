@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   post 'relevancer/report'
   get 'search',  to: 'relevancer#search'
 
+
+  resources :report
+
   namespace :admin do
     root to: "admin#index"
     resources :query
