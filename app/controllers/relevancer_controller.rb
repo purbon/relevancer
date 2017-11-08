@@ -8,14 +8,20 @@ class RelevancerController < ApplicationController
   def search
     @queries = Query.all
     @options = [ ['Nothing', -1], ['Perfect', 10], ['Excellent', 7], ['Good', 3], ['Fair', 0.5], ['Bad', 0] ]
+    @response = []
     if params.has_key?("query")
       @queryId = params["query"]["id"]
       @query_param = params["q"]
-      query = Query.find(@queryId)
-      query_options = query_render(query, params)
-      @response = Query.run(query_options)
-    else
-      @response = { 'hits' => { 'hits'  => [] }  }
+      query   = Query.find(@queryId)
+      fields  = query.selected_fields
+      options = query_render(query, params)
+      result  = Query.run(options)['hits']['hits'].map do |hit|
+        doc = { '_id' => hit['_id'], '_doc' => {} }
+        fields.each do |field|
+          doc['_doc'][field.order] = hit['_source'][field.name]
+        end
+        @response << doc
+      end
     end
     #redirect_back fallback_location: :root
   end
@@ -37,8 +43,8 @@ class RelevancerController < ApplicationController
   end
 
   def query_render(query_obj, params)
-    query_param = params["q"]
-    renderer = ERB.new(query_obj.json)
+    query_param     = params["q"]
+    renderer        = ERB.new(query_obj.json)
     generated_query = renderer.result(binding)
     { query:  generated_query, index: query_obj.index, param: query_param }
   end

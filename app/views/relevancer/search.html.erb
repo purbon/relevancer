@@ -22,12 +22,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @response["hits"]["hits"].each_with_index do |hit, index| %>
+    <% @response.each_with_index do |hit, index| %>
       </tr>
       <%= hidden_field_tag "id_for_#{index}", hit["_id"] %>
-      <td> <%= hit["_source"]["title"] %> </td>
-        <td> <%= hit["_source"]["text"][0,500] %> </td>
-        <td> <%= hit["_source"]["timestamp"] %> </td>
+      <td> <%= hit["_doc"][1] %> </td>
+        <td> <%= hit["_doc"][2] %> </td>
+        <td> <%= hit["_doc"][3] %> </td>
         <td>
           <%= select_tag("relevancy_for_#{index}", options_for_select( @options, -1), required: true) %>
         </td>

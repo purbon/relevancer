@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004170302) do
+ActiveRecord::Schema.define(version: 20171108165535) do
+
+  create_table "fields", force: :cascade do |t|
+    t.integer  "schema_id"
+    t.string   "name"
+    t.string   "type"
+    t.boolean  "selected"
+    t.integer  "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_fields_on_name", unique: true
+    t.index ["schema_id"], name: "index_fields_on_schema_id"
+  end
 
   create_table "queries", force: :cascade do |t|
     t.text     "json"
@@ -18,6 +30,13 @@ ActiveRecord::Schema.define(version: 20171004170302) do
     t.string   "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "queries_schemas", id: false, force: :cascade do |t|
+    t.integer "query_id"
+    t.integer "schema_id"
+    t.index ["query_id"], name: "index_queries_schemas_on_query_id"
+    t.index ["schema_id"], name: "index_queries_schemas_on_schema_id"
   end
 
   create_table "reportlines", force: :cascade do |t|
@@ -42,6 +61,13 @@ ActiveRecord::Schema.define(version: 20171004170302) do
     t.decimal  "idcg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "schemas", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_schemas_on_name", unique: true
   end
 
 end
