@@ -1,6 +1,9 @@
 require "erb"
 
 class RelevancerController < ApplicationController
+
+  skip_before_action :verify_authenticity_token
+
   def index
     @queries = Query.all
   end
@@ -23,7 +26,10 @@ class RelevancerController < ApplicationController
         @response << doc
       end
     end
-    #redirect_back fallback_location: :root
+    respond_to do |format|
+      format.html
+      format.json { render :json => @response.to_json  }
+    end
   end
 
   def report

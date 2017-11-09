@@ -18,3 +18,18 @@
 function validateReport() {
   return true;
 }
+
+ $(document).ready(function(){
+    $("form#search").on('ajax:success', function(event, data, status, xhr) {
+      console.log("Great!");
+      $("#results").html(data)
+      // use data to access to your json data structure
+    });
+
+    $("form#search").on('ajax:error', function(event, xhr, status, error) {
+      console.log("sorry mate!");
+      console.log(error)
+    });
+
+    // ....
+  })

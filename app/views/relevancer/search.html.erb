@@ -1,13 +1,3 @@
-<h1>Relevancer</h1>
-
-
-<%= form_tag("/search", method: "get", id: "search") do %>
-  <%= label_tag(:q, "Queries for:") %>
-  <%= text_field_tag(:q) %>
-  <%= collection_select(:query, :id, @queries, :id, :name, {:prompt => true, :selected => @queryId}) %>
-  <%= submit_tag("Search") %>
-<% end %>
-
 <%= form_tag("/relevancer/report", method: "post", id: "report", :onSubmit => "return validateReport()") do %>
   <%= hidden_field_tag "queryID", @queryId %>
   <%= hidden_field_tag "queryParam", @query_param %>

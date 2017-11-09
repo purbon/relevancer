@@ -1,9 +1,10 @@
 <h1>Relevancer</h1>
 
-
-<%= form_tag("/search", method: "get") do %>
+<%= form_tag("/search", method: "get", id: "search", remote: true) do %>
   <%= label_tag(:q, "Queries for:") %>
   <%= text_field_tag(:q) %>
-  <%= collection_select(:query, :id, @queries, :id, :name, {:prompt => true}) %>
+  <%= collection_select(:query, :id, @queries, :id, :name, {:prompt => true, :selected => @queryId}) %>
   <%= submit_tag("Search") %>
 <% end %>
+
+<div id="results"></div>
