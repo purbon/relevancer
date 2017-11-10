@@ -1,5 +1,7 @@
 class Admin::QueryController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @queries = Query.all
   end

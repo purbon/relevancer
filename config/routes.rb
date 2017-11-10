@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  devise_for :users
   get 'relevancer/index'
   post 'relevancer/report'
   get 'search',  to: 'relevancer#search'

@@ -56,3 +56,7 @@
 #search select {
   font-size: 18px;
 }
+
+.pull-right {
+  text-align: right;
+}
