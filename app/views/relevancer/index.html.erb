@@ -2,7 +2,7 @@
 
 <%= form_tag("/search", method: "get", id: "search", remote: true) do %>
   <%= label_tag(:q, "Queries for:") %>
-  <%= text_field_tag(:q) %>
+  <%= text_field_tag(:q, '', size: 75) %>
   <%= collection_select(:query, :id, @queries, :id, :name, {:prompt => true, :selected => @queryId}) %>
   <%= submit_tag("Search") %>
 <% end %>

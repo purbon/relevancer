@@ -2,9 +2,9 @@
   <%= hidden_field_tag "queryID", @queryId %>
   <%= hidden_field_tag "queryParam", @query_param %>
 
-  <table>
+  <table class="search_results">
     <thead>
-    <tr>
+    <tr class="search_header" >
       <th>Title</th>
       <th>Text</th>
       <th>Timestamp</th>
@@ -13,10 +13,10 @@
   </thead>
   <tbody>
     <% @response.each_with_index do |hit, index| %>
-      </tr>
+      <tr class="search_result">
       <%= hidden_field_tag "id_for_#{index}", hit["_id"] %>
-      <td> <%= hit["_doc"][1] %> </td>
-        <td> <%= hit["_doc"][2] %> </td>
+        <td class="first"> <%= hit["_doc"][1] %> </td>
+        <td> <%= raw hit["_doc"][2] %> </td>
         <td> <%= hit["_doc"][3] %> </td>
         <td>
           <%= select_tag("relevancy_for_#{index}", options_for_select( @options, -1), required: true) %>

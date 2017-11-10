@@ -37,7 +37,7 @@ class RelevancerController < ApplicationController
     docs = build_docs_list(pairs, params)
     report = Report.build(docs, params["queryID"], params["queryParam"])
     report.save
-    redirect_to :search
+    redirect_to :root
   end
 
   private
