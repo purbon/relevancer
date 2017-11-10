@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171110104042) do
+ActiveRecord::Schema.define(version: 20171110110324) do
 
   create_table "fields", force: :cascade do |t|
     t.integer  "schema_id"
@@ -22,6 +22,27 @@ ActiveRecord::Schema.define(version: 20171110104042) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_fields_on_name", unique: true
     t.index ["schema_id"], name: "index_fields_on_schema_id"
+  end
+
+  create_table "judgement_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "judgement_lists_judgements", id: false, force: :cascade do |t|
+    t.integer "judgement_id"
+    t.integer "judgement_list_id"
+    t.index ["judgement_id"], name: "index_judgement_lists_judgements_on_judgement_id"
+    t.index ["judgement_list_id"], name: "index_judgement_lists_judgements_on_judgement_list_id"
+  end
+
+  create_table "judgements", force: :cascade do |t|
+    t.string   "docID"
+    t.float    "rel"
+    t.string   "queryParam"
+    t.integer  "queryId"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "queries", force: :cascade do |t|

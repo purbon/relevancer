@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
 
   resources :report
+  resources :judgements
 
   namespace :admin do
     root to: "admin#index"

@@ -1,0 +1,27 @@
+<h1>Judgements</h1>
+
+<div class="download">
+  <%= link_to "Download CSV", action: "index", format: "csv" %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Doc ID</th>
+      <th>Query Id</th>
+      <th>Query Terms</th>
+      <th>Judgement</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @judgements.each do |judgement| %>
+      <tr>
+        <td><%= judgement.docID %> </td>
+        <td><%= judgement.queryId %> </td>
+        <td><%= judgement.queryParam %> </td>
+        <td><%= judgement.rel %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

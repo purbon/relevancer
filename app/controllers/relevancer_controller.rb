@@ -34,9 +34,20 @@ class RelevancerController < ApplicationController
 
   def report
     pairs = params.keys[4..-4].each_slice(2)
+
     docs = build_docs_list(pairs, params)
     report = Report.build(docs, params["queryID"], params["queryParam"])
     report.save
+
+    judgements = pairs.map do |pair|
+      Judgement.create(docID: params[pair[0]], rel: params[pair[1]].to_f, queryId: params["queryID"], queryParam: params["queryParam"])
+    end
+
+    list = JudgementList.create
+    list.judgements << judgements
+    list.save
+
+
     redirect_to :root
   end
 

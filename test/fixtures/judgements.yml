@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  docID: MyString
+  rel: 1.5
+  queryParam: MyString
+  queryId: 1
+
+two:
+  docID: MyString
+  rel: 1.5
+  queryParam: MyString
+  queryId: 1
