@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jsoneditor-minimalist
 //= require_tree .
 
 function validateReport() {

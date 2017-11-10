@@ -3,4 +3,7 @@
 <label> Index:</label>  
 <%= f.text_field :index %><br/>
 <label> QueryString:</label><br/>
-<%= f.text_area :json, id: "queryEditor", size: "90x36" %> <br/>
+<%= f.text_area :json, id: "queryEditor", size: "90x36", hidden: true %>
+
+
+<div id="editor"></div>
