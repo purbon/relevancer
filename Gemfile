@@ -57,3 +57,5 @@ gem 'elasticsearch'
 gem 'config'
 
 gem 'devise'
+
+gem 'mysql2'
