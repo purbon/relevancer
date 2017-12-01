@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20171110110324) do
 
-  create_table "fields", force: :cascade do |t|
+  create_table "fields", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "schema_id"
     t.string   "name"
     t.string   "type"
@@ -20,78 +20,78 @@ ActiveRecord::Schema.define(version: 20171110110324) do
     t.integer  "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_fields_on_name", unique: true
-    t.index ["schema_id"], name: "index_fields_on_schema_id"
+    t.index ["name"], name: "index_fields_on_name", unique: true, using: :btree
+    t.index ["schema_id"], name: "index_fields_on_schema_id", using: :btree
   end
 
-  create_table "judgement_lists", force: :cascade do |t|
+  create_table "judgement_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "judgement_lists_judgements", id: false, force: :cascade do |t|
+  create_table "judgement_lists_judgements", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "judgement_id"
     t.integer "judgement_list_id"
-    t.index ["judgement_id"], name: "index_judgement_lists_judgements_on_judgement_id"
-    t.index ["judgement_list_id"], name: "index_judgement_lists_judgements_on_judgement_list_id"
+    t.index ["judgement_id"], name: "index_judgement_lists_judgements_on_judgement_id", using: :btree
+    t.index ["judgement_list_id"], name: "index_judgement_lists_judgements_on_judgement_list_id", using: :btree
   end
 
-  create_table "judgements", force: :cascade do |t|
+  create_table "judgements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "docID"
-    t.float    "rel"
+    t.float    "rel",        limit: 24
     t.string   "queryParam"
     t.integer  "queryId"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "queries", force: :cascade do |t|
-    t.text     "json"
+  create_table "queries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "json",       limit: 65535
     t.string   "name"
     t.string   "index"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  create_table "queries_schemas", id: false, force: :cascade do |t|
+  create_table "queries_schemas", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "query_id"
     t.integer "schema_id"
-    t.index ["query_id"], name: "index_queries_schemas_on_query_id"
-    t.index ["schema_id"], name: "index_queries_schemas_on_schema_id"
+    t.index ["query_id"], name: "index_queries_schemas_on_query_id", using: :btree
+    t.index ["schema_id"], name: "index_queries_schemas_on_schema_id", using: :btree
   end
 
-  create_table "reportlines", force: :cascade do |t|
+  create_table "reportlines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "docID"
     t.integer  "relevancy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "reportlines_reports", id: false, force: :cascade do |t|
+  create_table "reportlines_reports", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "report_id"
     t.integer "reportline_id"
-    t.index ["report_id"], name: "index_reportlines_reports_on_report_id"
-    t.index ["reportline_id"], name: "index_reportlines_reports_on_reportline_id"
+    t.index ["report_id"], name: "index_reportlines_reports_on_report_id", using: :btree
+    t.index ["reportline_id"], name: "index_reportlines_reports_on_reportline_id", using: :btree
   end
 
-  create_table "reports", force: :cascade do |t|
+  create_table "reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "queryId"
     t.string   "queryParam"
-    t.decimal  "dcg"
-    t.decimal  "ndcg"
-    t.decimal  "idcg"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "dcg",        precision: 10
+    t.decimal  "ndcg",       precision: 10
+    t.decimal  "idcg",       precision: 10
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  create_table "schemas", force: :cascade do |t|
+  create_table "schemas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_schemas_on_name", unique: true
+    t.index ["name"], name: "index_schemas_on_name", unique: true, using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(version: 20171110110324) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end

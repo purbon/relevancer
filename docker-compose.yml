@@ -1,0 +1,23 @@
+version: "3"
+services:
+  mySQL:
+    image: mysql
+    networks:
+      - relevancer_network
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: relevancer
+      MYSQL_DATABASE: relevancer
+      MYSQL_USER: relevancer
+      MYSQL_PASSWORD: relevancer
+    ports:
+      - 3306:3306
+    volumes:
+      - ./containers/src/mysql/:/etc/mysql/conf.d
+
+networks:
+  relevancer_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.26.0/24

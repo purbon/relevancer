@@ -7,17 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 
-json1 = ' {  "query": { "match": { "Title.english": "<%= query_param %>"  }  } }'
-json2 = ' {  "query": { "match": { "Body.english": "<%= query_param %>"  }  } }'
-json3 = ' { "query": { "multi_match": { "query": "<%= query_param %>", "fields": ["Title.english", "Body.english"] } } }'
+json1 = ' {  "query": { "match": { "title": "<%= query_param %>"  }  } }'
+json2 = ' {  "query": { "match": { "text": "<%= query_param %>"  }  } }'
+json3 = ' { "query": { "multi_match": { "query": "<%= query_param %>", "fields": ["title", "text"] } } }'
 
 schema = Schema.create(name: 'posts')
-Field.create(name: 'Body', selected: true, order: 2, schema: schema)
-Field.create(name: 'Title', selected: true, order: 1, schema: schema)
-Field.create(name: 'LastActivityDate', selected: true, order: 3, schema: schema)
+Field.create(name: 'text', selected: true, order: 2, schema: schema)
+Field.create(name: 'title', selected: true, order: 1, schema: schema)
+Field.create(name: 'timestamp', selected: true, order: 3, schema: schema)
 
 
-Query.create(name: 'MatchTitle', index: 'posts', json: json1, schemas: [schema])
-Query.create(name: 'MatchBody', index: 'posts', json: json2,  schemas: [schema])
-Query.create(name: 'MultiMatch', index: 'posts', json: json3,  schemas: [schema])
+Query.create(name: 'MatchTitle', index: 'wikipedia', json: json1, schemas: [schema])
+Query.create(name: 'MatchBody', index: 'wikipedia', json: json2,  schemas: [schema])
+Query.create(name: 'MultiMatch', index: 'wikipedia', json: json3,  schemas: [schema])
 
