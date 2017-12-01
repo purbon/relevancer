@@ -10,7 +10,7 @@ class RelevancerController < ApplicationController
 
   def search
     @queries = Query.all
-    @options = [ ['Nothing', -1], ['Perfect', 10], ['Excellent', 7], ['Good', 3], ['Fair', 0.5], ['Bad', 0] ]
+    @options = Ranking.instance.rankings.collect {|p| [ p.name, p.value ] }
     @response = []
     if params.has_key?("query")
       @queryId = params["query"]["id"]
@@ -18,10 +18,11 @@ class RelevancerController < ApplicationController
       query   = Query.find(@queryId)
       fields  = query.selected_fields
       options = query_render(query, params)
-      result  = Query.run(options)['hits']['hits'].map do |hit|
-        doc = { '_id' => hit['_id'], '_doc' => {} }
+      Query.run(options)['hits']['hits'].map { |search_hit| Hit.new(search_hit) }.each do |hit|
+        doc = { '_id' => hit.id, '_doc' => {} }
         fields.each do |field|
-          doc['_doc'][field.order] = hit['_source'][field.name]
+          source_field = hit.field(field.name)[0..500]
+          doc['_doc'][field.order] = if hit.contains_highlight? then ( hit.highlight_field(field.name) || source_field)  else source_field end
         end
         @response << doc
       end
