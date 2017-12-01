@@ -2,8 +2,5 @@
 
 one:
   queryId: 1
-  lines: one
-
-two:
-  queryId: 1
-  lines: two
+  queryParam: "Igualada"
+  ndcg: 0.85

@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20171110110324) do
     t.integer  "queryId"
     t.string   "queryParam"
     t.decimal  "dcg",        precision: 10
-    t.decimal  "ndcg",       precision: 10
+    t.decimal  "ndcg",       precision: 15, scale: 2
     t.decimal  "idcg",       precision: 10
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false

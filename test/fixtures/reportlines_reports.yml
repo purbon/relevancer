@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  docID: "1"
-  relevancy: 1
+  report_id: 1
+  reportline_id: 1
 
 two:
-  docID: "2"
-  relevancy: 4
+  report_id: 1
+  reportline_id: 2
 
 three:
-  docID: "3"
-  relevancy: 2
+  report_id: 1
+  reportline_id: 3

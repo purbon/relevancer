@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  docID: MyString
-  rel: 1.5
-  queryParam: MyString
+  docID: "1"
+  rel: 2
+  queryParam: "Igualada"
   queryId: 1
 
 two:
-  docID: MyString
-  rel: 1.5
-  queryParam: MyString
+  docID: "2"
+  rel: 3
+  queryParam: "Igualada"
   queryId: 1
