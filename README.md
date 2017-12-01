@@ -1,24 +1,5 @@
-# README
+# Relevancer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.org/purbon/relevancer.svg?branch=master)](https://travis-ci.org/purbon/relevancer)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A quick hack, for now, to recollect expert based judgmenet for search. With relevancer you can have a simple UI that will allow the domain experts in your organization rate how good your search quality is.
