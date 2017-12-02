@@ -11,6 +11,9 @@ rvm:
   # Add more Ruby versions to list if supported,
   # Travis supports these versions: http://rubies.travis-ci.org/
 
+env:
+  - RELEVANCER_USER=travis
+
 services:
   - mysql
 

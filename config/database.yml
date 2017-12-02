@@ -16,21 +16,16 @@ development:
   host: 127.0.0.1
   port: 3306
 
-  #test:
-  #  <<: *default
-  #  database: relevancer_test
-  # host: 127.0.0.1
-  #port: 3306
-
 test:
-  adapter: mysql2
+  <<: *default
   database: relevancer_test
-  username: travis
-  encoding: utf8
-
+  username: <%= ENV['RELEVANCER_USER'] %>
+  password: <%= ENV['RELEVANCER_PASSWORD'] %>
+  host: 127.0.0.1
+  port: 3306
 
 production:
   <<: *default
   database: relevancer_production
-  host: ENV['RELEVANCER_DB_HOST']
+  host: <%= ENV['RELEVANCER_DB_HOST'] %>
   port: 3306
