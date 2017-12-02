@@ -1,15 +1,15 @@
 require "elastic"
 require "json"
+require "mustache"
 
 class Query < ApplicationRecord
 
   has_and_belongs_to_many :schemas
 
-  def run(params)
+  def run(params, elastic_client=ElasticClient.instance)
     options = render(params)
-    client = ElasticClient.instance.client
-    body = JSON.parse(options[:query])
-    client.search(index: options[:index], body: body)['hits']['hits'].map { |search_hit| Hit.new(search_hit) }
+    body    = JSON.parse(options[:query])
+    elastic_client.search(index: options[:index], body: body)
   end
 
   def selected_fields
@@ -18,8 +18,7 @@ class Query < ApplicationRecord
 
   def render(params)
     query_param     = params["q"]
-    renderer        = ERB.new(json)
-    generated_query = renderer.result(binding)
+    generated_query = Mustache.render(json, query_param: query_param)
     { query:  generated_query, index: index, param: query_param }
   end
 end

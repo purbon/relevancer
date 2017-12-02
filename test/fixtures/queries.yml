@@ -1,4 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  json: ' { "query": { "multi_match": { "query": " ${ query_param }", "fields": ["title", "text"] } } }'
+  json: ' { "query": { "multi_match": { "query": "{{query_param}}", "fields": ["title", "text"] } } }'
+  name: 'multi_match_query'
+  index: 'wikipedia'
+  id: 1

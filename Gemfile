@@ -60,3 +60,5 @@ gem 'config'
 gem 'devise'
 
 gem 'mysql2'
+
+gem "mustache", "~> 1.0"

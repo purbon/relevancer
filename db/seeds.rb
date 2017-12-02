@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 
-json1 = ' {  "query": { "match": { "title": "<%= query_param %>"  }  } }'
-json2 = ' {  "query": { "match": { "text": "<%= query_param %>"  }  } }'
-json3 = ' { "query": { "multi_match": { "query": "<%= query_param %>", "fields": ["title", "text"] } } }'
+json1 = ' {  "query": { "match": { "title": "{{ query_param }}"  }  } }'
+json2 = ' {  "query": { "match": { "text": "{{ query_param }}"  }  } }'
+json3 = ' { "query": { "multi_match": { "query": "{{ query_param }}", "fields": ["title", "text"] } } }'
 
 schema = Schema.create(name: 'posts')
 Field.create(name: 'text', selected: true, order: 2, schema: schema)
