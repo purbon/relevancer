@@ -12,21 +12,23 @@ class RelevancerController < ApplicationController
     @queries = Query.all
     @options = Ranking.instance.rankings.collect {|p| [ p.name, p.value ] }
     @response = []
+
     if params.has_key?("query")
-      @queryId = params["query"]["id"]
+      @queryId     = params["query"]["id"]
       @query_param = params["q"]
+
       query   = Query.find(@queryId)
       fields  = query.selected_fields
-      options = query_render(query, params)
-      Query.run(options)['hits']['hits'].map { |search_hit| Hit.new(search_hit) }.each do |hit|
+
+      query.run(params).each do |hit|
         doc = { '_id' => hit.id, '_doc' => {} }
         fields.each do |field|
-          source_field = hit.field(field.name)[0..500]
-          doc['_doc'][field.order] = if hit.contains_highlight? then ( hit.highlight_field(field.name) || source_field)  else source_field end
+          doc['_doc'][field.order] = hit.field(field.name)[0..500]
         end
         @response << doc
       end
     end
+
     respond_to do |format|
       format.html
       format.json { render :json => @response.to_json  }

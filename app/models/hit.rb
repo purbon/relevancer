@@ -15,6 +15,14 @@ class Hit
   end
 
   def field(name)
+    if contains_highlight? 
+      highlight_field(name) || source_field(name)
+    else 
+      source_field(name)
+    end
+  end
+
+  def source_field(name)
     hit['_source'][name]
   end
 
