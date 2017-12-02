@@ -15,9 +15,33 @@
 //= require turbolinks
 //= require_tree .
 
-function validateReport() {
-  return true;
+
+function judgement_validation_function() {
+  var valid = true
+  for (i = 0; (i < 10)&&(valid); i++) { 
+    var relevancy = $('#relevancy_for_'+i).find(":selected").val()
+    valid = (relevancy != "-1")
+    if (!valid) {
+        $( '#relevancy_for_'+i ).focus();
+    }
+  }
+  return valid;
 }
+
+for (i = 0; i < 10; i++) { 
+  $("#relevancy_for_"+i).change(function(event)  {
+    $("#report .submit_button").prop("disabled", false);
+  })
+}
+
+$( "#report" ).submit(function( event ) {
+  if( judgement_validation_function() )
+    return;
+  else {
+    alert("Your judgement can not be submited, need to evaluate all results!")
+    event.preventDefault();
+  }
+});
 
  $(document).ready(function(){
     $("form#search").on('ajax:success', function(event, data, status, xhr) {

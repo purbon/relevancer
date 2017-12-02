@@ -64,3 +64,14 @@
 .download {
   float: right;
 }
+
+.submit_button {
+  float: right;
+  font-size: 18px;
+  margin: 1em;
+}
+
+.relevancy_select {
+  font-size: 18px;
+  margin: 1em;
+}

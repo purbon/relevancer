@@ -1,4 +1,4 @@
-<%= form_tag("/relevancer/report", method: "post", id: "report", :onSubmit => "return validateReport()") do %>
+<%= form_tag("/relevancer/report", method: "post", id: "report") do %>
   <%= hidden_field_tag "queryID", @queryId %>
   <%= hidden_field_tag "queryParam", @query_param %>
 
@@ -19,12 +19,12 @@
         <td> <%= raw hit["_doc"][2] %> </td>
         <td> <%= hit["_doc"][3] %> </td>
         <td>
-          <%= select_tag("relevancy_for_#{index}", options_for_select( @options, -1), required: true) %>
+          <%= select_tag("relevancy_for_#{index}", options_for_select( @options, -1), required: true, class: "relevancy_select") %>
         </td>
       </tr>
     <% end %>
 
   </tbody>
 </table>
-  <%= submit_tag("Save") %>
+  <%= submit_tag("Save", class: 'submit_button') %>
 <% end %>
