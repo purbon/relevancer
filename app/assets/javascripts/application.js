@@ -15,6 +15,15 @@
 //= require turbolinks
 //= require_tree .
 
+$(document).on('turbolinks:load', function(){
+    $(".alert-success").delay(2000).slideUp(500, function(){
+          $(".alert-success").alert('close');
+      });
+
+    $(".alert-danger").delay(2000).slideUp(500, function(){
+          $(".alert-danger").alert('close');
+      });
+});
 
 function judgement_validation_function() {
   var valid = true
