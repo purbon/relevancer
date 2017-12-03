@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171110110324) do
+ActiveRecord::Schema.define(version: 20171202183446) do
 
   create_table "fields", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "schema_id"
@@ -60,28 +60,14 @@ ActiveRecord::Schema.define(version: 20171110110324) do
     t.index ["schema_id"], name: "index_queries_schemas_on_schema_id", using: :btree
   end
 
-  create_table "reportlines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "docID"
-    t.integer  "relevancy"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "reportlines_reports", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "report_id"
-    t.integer "reportline_id"
-    t.index ["report_id"], name: "index_reportlines_reports_on_report_id", using: :btree
-    t.index ["reportline_id"], name: "index_reportlines_reports_on_reportline_id", using: :btree
-  end
-
   create_table "reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "queryId"
     t.string   "queryParam"
     t.decimal  "dcg",        precision: 10
     t.decimal  "ndcg",       precision: 15, scale: 2
     t.decimal  "idcg",       precision: 10
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "schemas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
