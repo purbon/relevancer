@@ -14,6 +14,10 @@
  *= require_self
  */
 
+body {
+  font-family: georgia,serif;
+}
+
 .alert {
   margin: 1em;
 }

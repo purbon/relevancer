@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "admin#index"
     resources :query
+    resources :schema
   end
 
   root 'relevancer#index'

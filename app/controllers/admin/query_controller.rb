@@ -1,5 +1,7 @@
 class Admin::QueryController < ApplicationController
 
+  layout 'admin_app'
+
   before_action :authenticate_user!
 
   def index
