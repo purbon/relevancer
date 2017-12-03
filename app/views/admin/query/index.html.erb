@@ -14,7 +14,7 @@
   <tr>
     <td><%= query.id %></td>
     <td><%= query.name %></td> 
-    <td><%= query.json %></td>
+    <td><code><%= JSON.pretty_generate(JSON.parse(query.json)) %></code></td>
     <td><%= query.created_at %></td>
     <td>
       <%= button_to "Edit", { action: "edit", id: query.id }, method: "get" %>

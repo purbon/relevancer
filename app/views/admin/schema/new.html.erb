@@ -1,0 +1,28 @@
+<h1> Schema Management </h1>
+
+<p> Manage your search schema configuration from this page. </p>
+
+
+<%= form_tag("/fields", method: "get") do %>
+  <%= label_tag(:name, "Name:") %>
+  <%= text_field_tag(:name) %>
+  <%= label_tag(:indices, "Index:") %>
+  <%= select_tag "index", options_for_select(@indices) %>
+
+<h3> Add new field: </h3>
+<%= form_tag("/fields", method: "get") do %>
+  <%= label_tag(:name, "Name:") %>
+  <%= text_field_tag(:name) %>
+  <%= label_tag(:type, "Type:") %>
+  <%= text_field_tag(:type) %>
+  <%= label_tag(:order, "Order:") %>
+  <%= text_field_tag(:order) %> 
+  <%= label_tag(:selected, "Selected:") %>
+  <%= check_box_tag :selected %>
+
+  <%= button_tag("Add new field") %>
+<% end %>
+<br/>
+  <%= button_tag("Add new schema") %>
+<% end %>
+
