@@ -1,14 +1,19 @@
 require 'test_helper'
 
 class QueryControllerTest < ActionDispatch::IntegrationTest
+ 
+  setup do
+    sign_in users(:one)
+  end
+
   test "should get index" do
-    #get query_index_url
-    #assert_response :success
+    get admin_query_index_url
+    assert_response :success
   end
 
   test "should get create" do
-    #get query_create_url
-    #assert_response :success
+    get new_admin_query_url
+    assert_response :success
   end
 
 end
