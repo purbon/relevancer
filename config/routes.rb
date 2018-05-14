@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     root to: "admin#index"
     resources :query
     resources :schema
+    get '/schema/mapping/:index', to: 'schema#mapping'
+    post '/schema/fields', to: 'schema#fields'
   end
 
   root 'relevancer#index'

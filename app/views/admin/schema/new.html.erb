@@ -3,25 +3,15 @@
 <p> Manage your search schema configuration from this page. </p>
 
 
-<%= form_tag("/fields", method: "get") do %>
+<%= form_tag("/admin/schema/fields", method: "post") do %>
   <%= label_tag(:name, "Name:") %>
   <%= text_field_tag(:name) %>
   <%= label_tag(:indices, "Index:") %>
-  <%= select_tag "index", options_for_select(@indices) %>
+  <%= select_tag "index", options_for_select(@indices), { :include_blank => true } %>
 
-<h3> Add new field: </h3>
-<%= form_tag("/fields", method: "get") do %>
-  <%= label_tag(:name, "Name:") %>
-  <%= text_field_tag(:name) %>
-  <%= label_tag(:type, "Type:") %>
-  <%= text_field_tag(:type) %>
-  <%= label_tag(:order, "Order:") %>
-  <%= text_field_tag(:order) %> 
-  <%= label_tag(:selected, "Selected:") %>
-  <%= check_box_tag :selected %>
+  <h3> Select fields: </h3>
 
-  <%= button_tag("Add new field") %>
-<% end %>
+  <div id="results"></div>
 <br/>
   <%= button_tag("Add new schema") %>
 <% end %>

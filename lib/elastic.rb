@@ -20,4 +20,8 @@ class ElasticClient
   def indices
     client.cat.indices(h: [ 'index' ], format: 'json').map { |index| index["index"] }
   end
+
+  def mapping(index)
+    client.indices.get_mapping(index: index)
+  end
 end

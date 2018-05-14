@@ -64,5 +64,22 @@ $( "#report" ).submit(function( event ) {
       console.log(error)
     });
 
-    // ....
-  })
+    $("select#index").change(function(){
+      console.log("Great select!");
+      var indexVal = $('select[name=index]').val()
+      if (indexVal != '') {
+
+        $.ajax({
+          type: "GET",
+          url: "/admin/schema/mapping/"+indexVal+"",
+          success: function(data) {
+            console.log(data)
+            $("#results").html(data)
+          }
+        })
+      }
+
+    });
+
+ })
+
