@@ -9,6 +9,6 @@ class CreateFields < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :fields, :name, unique: true
+    #add_index :fields, :name, unique: true
   end
 end

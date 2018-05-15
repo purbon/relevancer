@@ -1,0 +1,27 @@
+<h1> Schema Management </h1>
+
+<p> Manage your search schema configuration from this page. </p>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th> 
+    <th>CreatedAt</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+<% @schemas.each do |schema| %>
+  <tr>
+    <td><%= schema.id %></td>
+    <td><%= schema.name %></td> 
+    <td><%= schema.created_at %></td>
+    <td>
+      <%= button_to "Edit", { action: "edit", id: schema.id }, method: "get" %>
+    </td>
+    <td> 
+    <%= button_to('Delete', { action: "destroy", id: schema.id },
+          method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }) %>
+    </td>
+  </tr>
+<% end %>
+</table>

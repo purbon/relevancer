@@ -16,4 +16,12 @@ class ElasticClient
   def search(options)
     client.search(index: options[:index], body: options[:body])['hits']['hits'].map { |search_hit| Hit.new(search_hit) }
   end
+
+  def indices
+    client.cat.indices(h: [ 'index' ], format: 'json').map { |index| index["index"] }
+  end
+
+  def mapping(index)
+    client.indices.get_mapping(index: index)
+  end
 end

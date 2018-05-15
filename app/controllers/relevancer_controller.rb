@@ -18,11 +18,11 @@ class RelevancerController < ApplicationController
       @query_param = params["q"]
 
       query   = Query.find(@queryId)
-      fields  = query.selected_fields
+      @fields  = query.selected_fields
 
       query.run(params).each do |hit|
         doc = { '_id' => hit.id, '_doc' => {} }
-        fields.each do |field|
+        @fields.each do |field|
           doc['_doc'][field.order] = hit.field(field.name)[0..500]
         end
         @response << doc
@@ -49,7 +49,6 @@ class RelevancerController < ApplicationController
     list = JudgementList.create
     list.judgements << judgements
     list.save
-
 
     redirect_to :root
   end

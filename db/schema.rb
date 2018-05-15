@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20171202183446) do
     t.integer  "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_fields_on_name", unique: true, using: :btree
     t.index ["schema_id"], name: "index_fields_on_schema_id", using: :btree
   end
 
@@ -72,6 +71,7 @@ ActiveRecord::Schema.define(version: 20171202183446) do
 
   create_table "schemas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
+    t.string   "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_schemas_on_name", unique: true, using: :btree

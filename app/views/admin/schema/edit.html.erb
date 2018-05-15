@@ -1,0 +1,42 @@
+<h1> Schema Management </h1>
+
+<p> Manage your search schema configuration from this page. </p>
+
+<%= form_for @schema, url: { action: "update" }, :method => "put" do |f| %>
+  <label> Name:</label>
+  <%= f.text_field :name %><br/>
+  <%= label_tag(:indices, "Index:") %>
+  <%= select_tag "index", options_for_select(@indices, @schema.index), { :include_blank => true } %>
+
+  <h3> Select fields: </h3>
+
+  <div id="results">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Selected</th>
+      </tr>
+
+      <% @definitions.keys.each do |def_type| %>
+        <tr>
+          <td><%= def_type %></td>    
+          <td><%= @definitions[def_type]["type"] %></td>
+          <td><%= check_box_tag "selected_#{def_type}",@definitions[def_type]["type"], @fields[def_type]  %></td>
+        </tr>
+        <% if @definitions[def_type]["fields"] %>
+          <tr>
+            <% @definitions[def_type]["fields"].keys.each do |type_key| %>
+              <td> <%= "#{def_type}.#{type_key}" %></td>
+              <td> <%= @definitions[def_type]["fields"][type_key]["type"] %> </td>
+              <td><%= check_box_tag "selected_#{def_type}.#{type_key}", @definitions[def_type]["fields"][type_key]["type"], @fields["#{def_type}.#{type_key}"]   %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+<br/>
+  <%= f.submit "Update" %>
+<% end %>
+

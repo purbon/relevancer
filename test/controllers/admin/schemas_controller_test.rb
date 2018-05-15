@@ -1,13 +1,13 @@
 require 'test_helper'
 
-class AdminControllerTest < ActionDispatch::IntegrationTest
+class Admin::SchemasControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     sign_in users(:one)
   end
-
+  
   test "should get index" do
-    get admin_root_url
+    get admin_schema_index_url
     assert_response :success
   end
 

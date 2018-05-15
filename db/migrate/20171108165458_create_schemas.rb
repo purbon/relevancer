@@ -7,6 +7,7 @@ class CreateSchemas < ActiveRecord::Migration[5.0]
 
     create_table :schemas do |t|
       t.string :name
+      t.string :index
 
       t.timestamps
     end

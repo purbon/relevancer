@@ -1,4 +1,6 @@
 ENV['RAILS_ENV'] ||= 'test'
+
+
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/autorun'
@@ -9,5 +11,9 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   include FactoryBot::Syntax::Methods
+end
 
+
+class ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
 end

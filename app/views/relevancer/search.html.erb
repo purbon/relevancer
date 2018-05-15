@@ -4,10 +4,10 @@
 
   <table class="search_results">
     <thead>
-    <tr class="search_header" >
-      <th>Title</th>
-      <th>Text</th>
-      <th>Timestamp</th>
+      <tr class="search_header" >
+      <% @fields.each do |field| %>
+          <th> <%= field.name.capitalize %> </th>
+      <% end %>
       <th>Relevance</th>
     </tr>
   </thead>
