@@ -20,14 +20,26 @@ class Admin::SchemaController < ApplicationController
     @fields = @schema.fields
   end
 
+  def destroy
+    query = Schema.find(params[:id])
+    query.destroy
+  end
+
   def fields
     puts params.inspect
 
     name  = params['name']
-    index = params['index']
+    index_name = params['index']
     selected_fields = params.to_hash.group_by { |k| k[0].split("_")[0] }["selected"].map { |t| [t[0].gsub("selected_",""), t[1]] }
 
-    puts selected_fields.inspect
+    # [["text", "text"], ["text.keyword", "keyword"]]
+
+    schema = Schema.create(name: name)
+    i = 1;
+    selected_fields.each do |field|
+      Field.create(name: field[0], selected:true, order: i, schema: schema)
+      i = i + 1
+    end
 
     redirect_to :admin_schema_index
   end

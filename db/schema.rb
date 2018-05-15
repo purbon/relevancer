@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20171202183446) do
     t.integer  "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_fields_on_name", unique: true, using: :btree
     t.index ["schema_id"], name: "index_fields_on_schema_id", using: :btree
   end
 

@@ -50,7 +50,6 @@ class RelevancerController < ApplicationController
     list.judgements << judgements
     list.save
 
-
     redirect_to :root
   end
 
