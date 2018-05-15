@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Selected</th>
+  </tr>
+
+  <% @definitions.keys.each do |def_type| %>
+    <tr>
+      <td><%= def_type %></td>    
+      <td><%= @definitions[def_type]["type"] %></td>
+      <td><%= check_box_tag "selected_"+def_type, @definitions[def_type]["type"] %></td>
+    </tr>
+    <% if @definitions[def_type]["fields"] %>
+      <tr>
+        <% @definitions[def_type]["fields"].keys.each do |type_key| %>
+          <td> <%= "#{def_type}.#{type_key}" %></td>
+          <td> <%= @definitions[def_type]["fields"][type_key]["type"] %> </td>
+          <td><%= check_box_tag "selected_#{def_type}.#{type_key}", @definitions[def_type]["fields"][type_key]["type"]  %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
