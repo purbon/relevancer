@@ -52,7 +52,7 @@ $( "#report" ).submit(function( event ) {
   }
 });
 
- $(document).ready(function(){
+$(document).on('turbolinks:load', function () {
     $("form#search").on('ajax:success', function(event, data, status, xhr) {
       console.log("Great!");
       $("#results").html(data)
