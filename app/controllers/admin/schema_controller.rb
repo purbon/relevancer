@@ -4,7 +4,7 @@ class Admin::SchemaController < ApplicationController
 
   layout 'admin_app'
 
-  before_action :authenticate_user!
+  before_action :verify_admin
 
   def index
     @schemas = Schema.all

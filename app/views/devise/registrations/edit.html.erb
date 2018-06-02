@@ -31,6 +31,11 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :user_category %><br />
+    <%= f.text_field :user_category, autofocus: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

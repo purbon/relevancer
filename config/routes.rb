@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'register' }
+
   get 'relevancer/index'
   post 'relevancer/report'
   get 'search',  to: 'relevancer#search'
