@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
 
   def is_admin?
-    self.email = User.first.email
+    self.admin
   end
 
 end
